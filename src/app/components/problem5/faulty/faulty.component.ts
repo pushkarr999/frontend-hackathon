@@ -11,9 +11,18 @@ export class FaultyComponent {
   ];
   ans = false;
   constructor(private apiService: ApiService) {}
-  atm:any;
-  aev:any;
-  faulty:any;
+  data:any = {
+    atm:'',
+    temp:'',
+    ups:'',
+    earth:'',
+    rcur:'',
+    ycurr:'',
+    bcurr:'',
+    rawPowOk:'',
+    insStatus:'',
+    macId:''
+  };
   ngOnInit() {
     this.loadDropdownOptions();
   }
@@ -22,7 +31,6 @@ export class FaultyComponent {
 
   getSelectedValue(value: string) {
     this.selectedValue = value;
-    this.atm = 
     console.log("selectedValue",this.selectedValue)
   }
 
@@ -63,16 +71,14 @@ export class FaultyComponent {
     }
     // Display the Unix timestamp (you can send this to your server or store it as needed)
     console.log('Selected Unix Timestamp: ' + unixTime, unixTime + 82800 + 3540 + 59);
-    // this.apiService.getFault(data).subscribe(
-    //   (options:any) => {
-    //     console.log("opetions",options)
-    //     this.ans = true
-    //     this.aev = options.averageEV
-    //     this.faulty = options.message
-    //   },
-    //   (error) => {
-    //     console.error('Error fetching dropdown options:', error);
-    //   }
-    // );
+    this.apiService.p5(data).subscribe(
+      (options:any) => {
+        console.log("opetions",options)
+        this.data = options
+      },
+      (error) => {
+        console.error('Error fetching dropdown options:', error);
+      }
+    );
   }
 }
