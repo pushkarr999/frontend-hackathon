@@ -1,0 +1,46 @@
+<!-- Include Bootstrap CSS in your project, either by downloading it or using CDN -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<div class="container mt-4">
+  <div class="form-group">
+    <label for="mySelect">Select Option:</label>
+    <select class="form-control" #mySelect (change)="getSelectedValue(mySelect.value)">
+      <option *ngFor="let option of dropdownOptions" [value]="option.key">
+        {{ option.label }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="datepicker">Select a Date:</label>
+    <input type="date" class="form-control" id="datepicker">
+  </div>
+
+  <button class="btn btn-primary" (click)="saveDateTime()">Save</button>
+</div>
+
+<div class="container mt-4">
+    <h2>Answer</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">MAC ID</th>
+          <th scope="col">Installation Status</th>
+          <th scope="col">ATM Acc</th>
+          <th scope="col">Temp Sensor</th>
+          <th scope="col">UPS Acc</th>
+          <th scope="col">Earth Connection</th>
+          <th scope="col">R Curr</th>
+          <th scope="col">Y Curr</th>
+          <th scope="col">B Curr</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{selectedValue}}</td>
+          <td>{{aev}}</td>
+          <td>{{faulty}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
